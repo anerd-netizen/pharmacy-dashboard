@@ -1,6 +1,6 @@
 Yogi Medicare Inventory Management System
 A real-time, full-stack pharmacy inventory dashboard built to modernize local pharmacy management. This application provides instant updates on stock levels, ensuring efficient healthcare logistics.
-pharmacy-dashboard-weld.vercel.app
+pharmacy-dashboard-git-main-anerd-netizens-projects.vercel.app
 
 🚀 Key Features
 Real-Time Synchronization: Uses Supabase Realtime to push stock updates to all connected clients instantly (no page refresh required).
