@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Yogi Medicare Inventory Management System
+A real-time, full-stack pharmacy inventory dashboard built to modernize local pharmacy management. This application provides instant updates on stock levels, ensuring efficient healthcare logistics.
+pharmacy-dashboard-weld.vercel.app
 
-## Getting Started
+🚀 Key Features
+Real-Time Synchronization: Uses Supabase Realtime to push stock updates to all connected clients instantly (no page refresh required).
 
-First, run the development server:
+Robust Security: Implements Row-Level Security (RLS) policies at the database layer to ensure only authorized admins can modify stock levels.
 
-```bash
+Modern Stack: Built with Next.js 15+ and TypeScript for type safety and performance.
+
+Responsive UI: Styled with Tailwind CSS for seamless mobile and desktop use.
+
+🛠 Tech Stack
+Frontend: Next.js (App Router), TypeScript, Tailwind CSS
+
+Backend/Database: Supabase (PostgreSQL)
+
+Authentication: Supabase Auth
+
+Deployment: Vercel
+
+📦 Getting Started
+Prerequisites
+Node.js (v18+)
+
+A Supabase account
+
+Installation
+Clone the repository:
+
+Bash
+git clone https://github.com/your-username/yogi-medicare-dynamic.git
+cd yogi-medicare-dynamic
+Install dependencies:
+
+Bash
+npm install
+Set up environment variables:
+Create a .env.local file in the root directory:
+
+Code snippet
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+Run the development server:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔐 Security Configuration
+This project utilizes Row Level Security (RLS) in Supabase. To ensure your database is secure, execute the following in your Supabase SQL Editor:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+SQL
+-- Enable RLS
+ALTER TABLE inventory ENABLE ROW LEVEL SECURITY;
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-- Policy for Public Read
+CREATE POLICY "Public inventory is readable by everyone" 
+ON inventory FOR SELECT TO anon USING (true);
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+-- Policy for Admin Update (Requires Auth)
+CREATE POLICY "Only admins can update stock" 
+ON inventory FOR UPDATE TO authenticated USING (true);
+📈 Future Roadmap
+[ ] Implement Admin Dashboard Login.
 
-## Learn More
+[ ] Add Low-Stock Email Notifications using Supabase Edge Functions.
 
-To learn more about Next.js, take a look at the following resources:
+[ ] Generate PDF stock reports.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📄 License
+This project is open-source and available under the MIT License.
